@@ -1,45 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 *{
     margin: 0px;
     box-sizing:border-box;
     padding: 0px;
 }
+
+/*body*/
+body{
+    min-height: 100vh;
+    background: linear-gradient(to bottom, rgb(46, 110, 249),white);
+    position: relative;
+    font-family: 'Roboto',sans-serif;
+}
+
+body::-webkit-scrollbar{
+    display: none;
+}
+
+body::after{
+    content: "";
+    position: fixed;
+    inset: 0;                          /*right: 0; left: 0; bottom: 0; top: 0;*/
+    background: white;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
 /*search bar*/
 .searchdiv{
     position: sticky;
     top: 5px;
-    border-radius: 20px;
+    border-radius: 50px;
+    transition: width 0.8s ease;
     display: flex;
     border: 1px solid #ccc;
     overflow: hidden;
-    width: 300px;
     align-items: center;
     justify-content: center;
-    margin: auto;
     margin-top: 5px;
+    margin: auto;
     background-color: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    width: 46px;
 }
+
+.searchactive{
+    width: 300px;
+}
+
+.searchactive input{
+    width: 400px;
+}
+
+
 .searchdiv button{
     border: none;
-    border-left: 1px solid #ccc;
-    padding: 12px 16px;
-    font-size: 18px;
+    padding: 10px 14px;
+    font-size: 14px;
     cursor: pointer;
     background-color: white;
 }
+
 .searchdiv input{
+    width: 0;
     border: none;
     flex:1;
-    padding: 12px 16px;
+    padding: 0;
     outline: none;
     font-size: 16px;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
 }
 
-/*title*/
-.title{
-    text-align: center;
-    margin-top: 20px;
-    font-size: 32px;
+/*search mode*/
+.searchmode::after{
+    opacity: 1;
 }
+
+.cityname, .card, .next_days{
+    opacity: 1;
+    transition: opacity 0.25s ease;
+}
+
+.searchmode .cityname,
+.searchmode .card, 
+.searchmode .next_days{
+    opacity: 0;
+}
+
+.searchdiv,.cityname,.card,.next_days{
+    position: relative;
+    z-index: 1;
+}
+
 
 /*weather card*/
 .card{ 
@@ -52,8 +107,59 @@
     gap: 5px;
 }
 
-/*body*/
-body{
-    min-height: 100vh;
-    background: linear-gradient(to bottom, rgb(104, 146, 238),white)
+#temp{
+    font-size: 40px;
+}
+
+.cityname{
+    text-align: left;
+    font-size: 30px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+/*forcast days*/
+.next_days{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: 4px;
+    margin-right: 4px;
+    font-size: 20px;
+    gap:10px;
+}
+
+.forecast_row{
+    display: flex;
+    gap: 20px;
+}
+
+.forecast_row div{
+    flex: 1;
+    text-align: center;
+}
+
+.forecast_header{
+    font-weight: bolder;
+}
+
+/*topbar*/
+.topbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*graph*/
+.graph{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 100%;
+    height: 200px;
+}
+
+.graph canvas{
+    width: 100% !important;
+    height: 180px !important;
 }
